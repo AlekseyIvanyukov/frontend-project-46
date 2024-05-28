@@ -20,10 +20,10 @@ const genDiff = (filepath1, filepath2) => {
   console.log(data2);
 
   const flatDiff = getFlatDiff(data1, data2);
-  
+
   const tree = buildTree(data1, data2);
   console.log(`tree ===> ${tree}`);
-  
+
   // format(tree, formatName);
   return flatDiff;
 };

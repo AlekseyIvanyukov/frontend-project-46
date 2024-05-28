@@ -1,23 +1,37 @@
 import { types } from 'js-yaml';
 import _ from 'lodash';
 
+const getResult = (sign, key, value) => `${sign} ${key}: ${value}`;
+
 const getFlatDiff = (data1, data2) => {
-  const entries1 = Object.entries(data1);
-  const entries2 = Object.entries(data2);
-  const objectsUnion = _.sortBy(_.union(entries1, entries2));
+  const keys1 = Object.keys(data1);
+  const keys2 = Object.keys(data2);
+  const objectsUnion = _.sortBy(_.union(keys1, keys2));
   console.log(objectsUnion);
 
-  const result = {};
-  objectsUnion.map(([key, value]) => {
-    if (!Object.hasOwn(data1, key)) {
-      result[`+ ${key}`] = value;
-    } else if (!Object.hasOwn(data2, key)) {
-      result[`- ${key}`] = value;
-    } else if (data1[key] === data2[key]) {
-      result[`  ${key}`] = value;
-    }
-  });
-  return result;
+  const result = objectsUnion
+    .reduce((acc, key) => {
+      const hasOne = keys1.includes(key);
+      const hasTwo = keys2.includes(key);
+
+      if (hasOne && !hasTwo) {
+        acc.push(getResult('-', key, data1[key]));
+      } else if (!hasOne && hasTwo) {
+        acc.push(getResult('+', key, data2[key]));
+      } else if (hasOne && hasTwo && data1[key] !== data2[key]) {
+        acc.push(getResult('-', key, data1[key]));
+        acc.push(getResult('+', key, data2[key]));
+      } else if (hasOne && hasTwo) {
+        acc.push(getResult(' ', key, data1[key]));
+      }
+      return acc;
+    }, []);
+
+  return [
+    '{',
+    ...result,
+    '}',
+  ].join('\n');
 };
 
 export default getFlatDiff;
