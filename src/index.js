@@ -15,14 +15,14 @@ const genDiff = (filepath1, filepath2) => {
   console.log(`fullpath2 ==> ${fullPath2}`);
 
   const data1 = getData(fullPath1);
-  console.log(data1);
+  // console.log(data1);
   const data2 = getData(fullPath2);
-  console.log(data2);
+  // console.log(data2);
 
   const flatDiff = getFlatDiff(data1, data2);
 
   const tree = buildTree(data1, data2);
-  console.log(`tree ===> ${tree}`);
+  // console.log(`tree ===> ${tree}`);
 
   // format(tree, formatName);
   return flatDiff;
