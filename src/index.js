@@ -4,7 +4,7 @@ import parse from './parse.js';
 import buildTree from './treebuilder.js';
 import getFlatDiff from './compare.js';
 
-const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
+const getFullPath = (filepath) => path.resolve(process.cwd(), '__fixtures__', filepath);
 const extractFormat = (filepath) => path.extname(filepath).slice(1);
 const getData = (filepath) => parse(fs.readFileSync(filepath, ('utf-8')), extractFormat(filepath));
 
@@ -21,7 +21,7 @@ const genDiff = (filepath1, filepath2) => {
 
   const flatDiff = getFlatDiff(data1, data2);
 
-  const tree = buildTree(data1, data2);
+  // const tree = buildTree(data1, data2);
   // console.log(`tree ===> ${tree}`);
 
   // format(tree, formatName);

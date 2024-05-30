@@ -1,7 +1,7 @@
 import { types } from 'js-yaml';
 import _ from 'lodash';
 
-const getResult = (sign, key, value) => `${sign} ${key}: ${value}`;
+const getResult = (sign, key, value) => `  ${sign} ${key}: ${value}`;
 
 const getFlatDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
