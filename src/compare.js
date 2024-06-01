@@ -1,9 +1,8 @@
-import { types } from 'js-yaml';
 import _ from 'lodash';
 
 const getResult = (sign, key, value) => `  ${sign} ${key}: ${value}`;
 
-const getFlatDiff = (data1, data2) => {
+const getDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
   const objectsUnion = _.sortBy(_.union(keys1, keys2));
@@ -33,4 +32,4 @@ const getFlatDiff = (data1, data2) => {
     '}',
   ].join('\n');
 };
-export default getFlatDiff;
+export default getDiff;
