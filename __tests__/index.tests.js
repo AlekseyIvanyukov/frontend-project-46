@@ -5,12 +5,27 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
+import getPlain, { getDataToString } from '../formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filepath) => fs.readFileSync(getFixturePath(filepath), 'utf-8');
+
+test('stringify in plain.js', () => {
+  const obj = {
+    new: true,
+  };
+  expect(getDataToString(null)).toBe('null');
+  expect(getDataToString(5)).toBe('5');
+  expect(getDataToString('hello')).toBe('hello');
+  expect(getDataToString(obj)).toBe('[complex value]');
+});
+
+test('plain format', () => {
+  expect(getPlain()).toEqual();
+});
 
 test('compare json files', () => {
   const filePath1 = getFixturePath('file1.json');
@@ -25,11 +40,3 @@ test('compare yaml files', () => {
   const result = readFile('resultDiff.txt');
   expect(genDiff(filePath1, filePath2)).toEqual(result);
 });
-
-/* test('compare yml files', () => {
-  const filePath1 = getFixturePath('file1.yml');
-  const filePath2 = getFixturePath('file2.yml');
-  const result = readFile('resultDiff.txt');
-  expect(genDiff(filePath1, filePath2)).toEqual(result);
-});
- */
