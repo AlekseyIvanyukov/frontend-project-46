@@ -2,11 +2,10 @@ import _ from 'lodash';
 
 const getResult = (sign, key, value) => `  ${sign} ${key}: ${value}`;
 
-const getDiff = (data1, data2) => {
+const getflatDiff = (data1, data2) => {
   const keys1 = Object.keys(data1);
   const keys2 = Object.keys(data2);
   const objectsUnion = _.sortBy(_.union(keys1, keys2));
-  // console.log(objectsUnion);
 
   const result = objectsUnion
     .reduce((acc, key) => {
@@ -32,4 +31,4 @@ const getDiff = (data1, data2) => {
     '}',
   ].join('\n');
 };
-export default getDiff;
+export default getflatDiff;
