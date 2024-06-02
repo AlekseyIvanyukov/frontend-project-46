@@ -1,43 +1,42 @@
 import _ from 'lodash';
 
-const getKeys = (data) => Object.keys(data);
-
 const buildTree = (data1, data2) => {
-  const dataUnion = _.union(getKeys(data1), getKeys(data2));
-  const sortedUnion = _.sortBy(dataUnion);
+  const keys1 = Object.keys(data1);
+  const keys2 = Object.keys(data2);
+  const unionSortedKeys = _.sortBy(_.union(keys1, keys2));
 
-  return sortedUnion.map((element) => {
-    if (_.has(data1, element)
-    && _.has(data2, element)
-    && _.isPlainObject(data1[element])
-    && _.isPlainObject(data2[element])) {
+  return unionSortedKeys.map((key) => {
+    if (!_.has(data1, key)) {
       return {
-        type: 'parent',
-        element,
-        children: buildTree(data1[element], data2[element]),
+        key,
+        status: 'added',
+        value: data2[key],
+      };
+    } if (!_.has(data2, key)) {
+      return {
+        key,
+        status: 'deleted',
+        value: data1[key],
+      };
+    } if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
+      return {
+        key,
+        status: 'parent',
+        children: buildTree(data1[key], data2[key]),
+      };
+    } if (!_.isEqual(data1[key], data2[key])) {
+      return {
+        key,
+        status: 'updated',
+        value1: data1[key],
+        value2: data2[key],
       };
     }
-    if (_.has(data1, element)) {
-      if (!_.has(data2, element)) {
-        return {
-          type: 'deleted',
-          element,
-          value: data1[element],
-        };
-      }
-    }
-    if (data1[element] === data2[element]) {
-      return {
-        type: 'same',
-        element,
-        oldValue: data1[element],
-        newValue: data2[element],
-      };
-    }
+
     return {
-      type: 'added',
-      element,
-      value: data2[element],
+      key,
+      status: 'unchanged',
+      value: data1[key],
     };
   });
 };
