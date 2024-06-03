@@ -7,6 +7,8 @@ const format = (data, formatName) => {
     return stylish(data);
   } if (formatName === 'plain') {
     return plain(data);
+  } if (formatName === 'json') {
+    return JSON.stringify(data, '', 2);
   }
   return new Error(`Unexpected format: ${formatName}`);
 };

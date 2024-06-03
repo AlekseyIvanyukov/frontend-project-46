@@ -6,6 +6,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
 import getPlain, { getDataToString } from '../formatters/plain.js';
+import format from '../formatters/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +24,13 @@ test('stringify in plain.js', () => {
   expect(getDataToString(obj)).toBe('[complex value]');
 });
 
+test('stylish format', () => {
+  expect(getPlain()).toEqual();
+});
 test('plain format', () => {
+  expect(getPlain()).toEqual();
+});
+test('json format', () => {
   expect(getPlain()).toEqual();
 });
 
