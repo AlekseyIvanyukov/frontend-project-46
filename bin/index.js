@@ -3,6 +3,6 @@
 // eslint-disable-next-line import/extensions
 import genDiff from '../index.js';
 
-genDiff();
+genDiff(__fixtures__/file1.json, __fixtures__/file2.json);
 
 export default genDiff;

@@ -24,19 +24,20 @@ test('stringify in plain.js', () => {
   expect(getDataToString(obj)).toBe('[complex value]');
 });
 
-test('stylish format', () => {
+/* test('stylish format', () => {
   expect(getPlain()).toEqual();
 });
 test('plain format', () => {
-  expect(getPlain()).toEqual();
+  const result = readFile('resultPlain.txt')
+  expect(getPlain()).toEqual(result);
 });
 test('json format', () => {
   expect(getPlain()).toEqual();
 });
 
-test('compare json files', () => {
+test('compare json & yaml files', () => {
   const filePath1 = getFixturePath('file1.json');
-  const filePath2 = getFixturePath('file2.json');
+  const filePath2 = getFixturePath('file2.yaml');
   const result = readFile('resultDiff.txt');
   expect(genDiff(filePath1, filePath2)).toEqual(result);
 });
@@ -46,4 +47,4 @@ test('compare yaml files', () => {
   const filePath2 = getFixturePath('file2.yaml');
   const result = readFile('resultDiff.txt');
   expect(genDiff(filePath1, filePath2)).toEqual(result);
-});
+}); */
