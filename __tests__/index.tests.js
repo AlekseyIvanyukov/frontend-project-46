@@ -1,11 +1,9 @@
-/* eslint-disable import/extensions */
-/* eslint-disable no-underscore-dangle */
 import { test, expect } from '@jest/globals';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
-import getPlain, { getDataToString } from '../formatters/plain.js';
+import getPlain from '../formatters/plain.js';
 import format from '../formatters/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,7 +18,7 @@ test('stringify in plain.js', () => {
   };
   expect(getDataToString(null)).toBe('null');
   expect(getDataToString(5)).toBe('5');
-  expect(getDataToString('hello')).toBe('hello');
+  expect(getDataToString('hello')).toBe("'hello'");
   expect(getDataToString(obj)).toBe('[complex value]');
 });
 

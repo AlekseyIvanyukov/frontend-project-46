@@ -4,7 +4,7 @@ export const getDataToString = (data) => {
   if (_.isObject(data)) {
     return '[complex value]';
   } if (typeof data === 'string') {
-    return `${data}`;
+    return `'${data}'`;
   }
 
   return String(data);
@@ -12,22 +12,24 @@ export const getDataToString = (data) => {
 
 const getPlain = (tree, path = []) => tree
   .map((item) => {
-    const { key } = item;
+    const {
+      key, status, children, value, oldValue, newValue,
+    } = item;
     const newProp = [...path, key].join('.');
 
-    switch (item.status) {
+    switch (status) {
       case 'added':
-        return `Property '${newProp}' was added with value: ${getDataToString(item.value)}`;
+        return `Property '${newProp}' was added with value: ${getDataToString(value)}`;
       case 'deleted':
         return `Property '${newProp}' was removed`;
       case 'updated':
-        return `Property '${newProp}' was updated. From ${getDataToString(item.value1)} to ${getDataToString(item.value2)}`;
+        return `Property '${newProp}' was updated. From ${getDataToString(oldValue)} to ${getDataToString(newValue)}`;
       case 'unchanged':
         return null;
       case 'parent':
-        return getPlain(item.children, [...path, key]);
+        return getPlain(children, [...path, key]);
       default:
-        throw new Error(`Unexpected status: ${item.status}`);
+        throw new Error(`Unexpected status: ${status}`);
     }
   })
   .filter((item) => item !== null)

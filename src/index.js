@@ -1,8 +1,6 @@
-/* eslint-disable import/extensions */
 import path from 'path';
 import fs from 'node:fs';
 import parse from './parser.js';
-// import getFlatDiff from './compare.js';
 import buildTree from './treebuilder.js';
 import format from '../formatters/index.js';
 
