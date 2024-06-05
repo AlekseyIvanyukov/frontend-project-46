@@ -1,4 +1,4 @@
-name: Frontend-46
+name: Node-CI
 on:
   - push
   - pull_request

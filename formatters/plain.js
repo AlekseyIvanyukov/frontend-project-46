@@ -1,10 +1,10 @@
-import _ from 'lodash';
-
 export const getDataToString = (data) => {
-  if (_.isObject(data)) {
-    return '[complex value]';
+  if (data === null) {
+    return String(data);
   } if (typeof data === 'string') {
     return `'${data}'`;
+  } if (typeof data === 'object') {
+    return '[complex value]';
   }
 
   return String(data);
