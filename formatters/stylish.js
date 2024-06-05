@@ -19,19 +19,20 @@ const stylish = (tree, replacer = ' ', spacesCount = 4) => {
     const currentIndent = replacer.repeat(indentSize - gapSize);
     const bracketIndent = replacer.repeat(indentSize - spacesCount);
     const result = deepTree.flatMap((item) => {
+      const deepChildren = stringify(item.value, depth + 1);
       let output = '';
       switch (item.status) {
         case 'added':
-          output += `${currentIndent}+ ${item.key}: ${stringify(item.value, depth + 1)}`;
+          output += `${currentIndent}+ ${item.key}: ${deepChildren}`;
           break;
         case 'deleted':
-          output += `${currentIndent}- ${item.key}: ${stringify(item.value, depth + 1)}`;
+          output += `${currentIndent}- ${item.key}: ${deepChildren}`;
           break;
         case 'updated':
           output += `${currentIndent}- ${item.key}: ${stringify(item.oldValue, depth + 1)}\n${currentIndent}+ ${item.key}: ${stringify(item.newValue, depth + 1)}`;
           break;
         case 'unchanged':
-          output += `${currentIndent}  ${item.key}: ${stringify(item.value, depth + 1)}`;
+          output += `${currentIndent}  ${item.key}: ${deepChildren}`;
           break;
         case 'parent':
           output += `${currentIndent}  ${item.key}: ${iter(item.children, depth + 1)}`;
