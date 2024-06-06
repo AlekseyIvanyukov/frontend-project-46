@@ -20,27 +20,20 @@ const stylish = (tree, replacer = ' ', spacesCount = 4) => {
     const bracketIndent = replacer.repeat(indentSize - spacesCount);
     const result = deepTree.flatMap((item) => {
       const deepChildren = stringify(item.value, depth + 1);
-      let output = '';
       switch (item.status) {
         case 'added':
-          output += `${currentIndent}+ ${item.key}: ${deepChildren}`;
-          break;
+          return `${currentIndent}+ ${item.key}: ${deepChildren}`;
         case 'deleted':
-          output += `${currentIndent}- ${item.key}: ${deepChildren}`;
-          break;
+          return `${currentIndent}- ${item.key}: ${deepChildren}`;
         case 'updated':
-          output += `${currentIndent}- ${item.key}: ${stringify(item.oldValue, depth + 1)}\n${currentIndent}+ ${item.key}: ${stringify(item.newValue, depth + 1)}`;
-          break;
+          return `${currentIndent}- ${item.key}: ${stringify(item.oldValue, depth + 1)}\n${currentIndent}+ ${item.key}: ${stringify(item.newValue, depth + 1)}`;
         case 'unchanged':
-          output += `${currentIndent}  ${item.key}: ${deepChildren}`;
-          break;
+          return `${currentIndent}  ${item.key}: ${deepChildren}`;
         case 'parent':
-          output += `${currentIndent}  ${item.key}: ${iter(item.children, depth + 1)}`;
-          break;
+          return `${currentIndent}  ${item.key}: ${iter(item.children, depth + 1)}`;
         default:
           throw new Error(`Unexpected status: ${item.status}`);
       }
-      return output;
     });
     return ['{', ...result, `${bracketIndent}}`].join('\n');
   };
