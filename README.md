@@ -32,19 +32,34 @@ make install
 ```shell
 gendiff -h
 ```
-[![asciicast](https://asciinema.org/a/wDR0bADFRwHlKfnPO8Gh6xv7y.svg)](https://asciinema.org/a/wDR0bADFRwHlKfnPO8Gh6xv7y)
+[![asciicast](https://asciinema.org/a/ey8Ye3HN9VcLV2S9NiT7cLLuj.svg)](https://asciinema.org/a/ey8Ye3HN9VcLV2S9NiT7cLLuj)
 
 ##### Example diff of two flat files (json):
-[![asciicast](https://asciinema.org/a/L3lGGflsq5xfJRk8bXkcTXtNc.svg)](https://asciinema.org/a/L3lGGflsq5xfJRk8bXkcTXtNc)
+```shell
+gendiff file3.json file4.json
+```
+[![asciicast](https://asciinema.org/a/W9Gh6zSw6psUJR12R3oVL0Osu.svg)](https://asciinema.org/a/W9Gh6zSw6psUJR12R3oVL0Osu)
 
 ##### Example diff of two flat files yml (yaml):
-[![asciicast](https://asciinema.org/a/xfPrBXtFrUwfwBbJAbmG97Tr2.svg)](https://asciinema.org/a/xfPrBXtFrUwfwBbJAbmG97Tr2)
+```shell
+gendiff file3.yml file4.yml
+```
+[![asciicast](https://asciinema.org/a/ZIhEpgjNfAqsaQy2jFTus2Yfg.svg)](https://asciinema.org/a/ZIhEpgjNfAqsaQy2jFTus2Yfg)
 
 ##### Recursive comparsion with default format 'stylish':
-[![asciicast](https://asciinema.org/a/1z4oOADHkTYNHBFONa4t5jkkm.svg)](https://asciinema.org/a/1z4oOADHkTYNHBFONa4t5jkkm)
+```shell
+gendiff file1.json file2.json
+```
+[![asciicast](https://asciinema.org/a/CPT6tG9Zjnsyr50FGFGyGCMqP.svg)](https://asciinema.org/a/CPT6tG9Zjnsyr50FGFGyGCMqP)
 
 ##### Recursive comparsion with plain format:
-[![asciicast](https://asciinema.org/a/i949XOGhyAZGY8daB5nxnpMkA.svg)](https://asciinema.org/a/i949XOGhyAZGY8daB5nxnpMkA)
+```shell
+gendiff -f plain file1.json file2.yaml
+```
+[![asciicast](https://asciinema.org/a/15PbykfdVCzH250PRLgJwlDQl.svg)](https://asciinema.org/a/15PbykfdVCzH250PRLgJwlDQl)
 
 ##### Recursive comparsion with json format:
-[![asciicast](https://asciinema.org/a/UwGBYyesIR4O19sQB5SnysZZo.svg)](https://asciinema.org/a/UwGBYyesIR4O19sQB5SnysZZo)
+```shell
+gendiff -f json file1.json file2.yaml
+```
+[![asciicast](https://asciinema.org/a/lqPACasEeIMVoGpD0ZRczupA7.svg)](https://asciinema.org/a/lqPACasEeIMVoGpD0ZRczupA7)
