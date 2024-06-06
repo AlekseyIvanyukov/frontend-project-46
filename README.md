@@ -5,3 +5,6 @@
 
 Example diff of two flat files (JSON):
 [![asciicast](https://asciinema.org/a/L3lGGflsq5xfJRk8bXkcTXtNc.svg)](https://asciinema.org/a/L3lGGflsq5xfJRk8bXkcTXtNc)
+
+Usage and options:
+[![asciicast](https://asciinema.org/a/wDR0bADFRwHlKfnPO8Gh6xv7y.svg)](https://asciinema.org/a/wDR0bADFRwHlKfnPO8Gh6xv7y)
