@@ -7,6 +7,11 @@
 
 ## Getting started
 
+### Prerequisites
+
+* `npm` should be installed
+* `git` should be installed
+
 ### Basic installation
 
 Difference calculator is installed by running the following command in your terminal. You can install this via the command-line with `git`.
@@ -15,8 +20,18 @@ Difference calculator is installed by running the following command in your term
 ```shell
 git clone https://github.com/AlekseyIvanyukov/frontend-project-46.git
 ```
+```shell
+cd frontend-project-46
+```
+#### To install
+```shell
+make install
+```
 
 ##### Usage and options:
+```shell
+gendiff -h
+```
 [![asciicast](https://asciinema.org/a/wDR0bADFRwHlKfnPO8Gh6xv7y.svg)](https://asciinema.org/a/wDR0bADFRwHlKfnPO8Gh6xv7y)
 
 ##### Example diff of two flat files (json):
