@@ -28,6 +28,13 @@ test('compare flat json files with default stylish format', () => {
   expect(genDiff(filePath1, filePath2)).toEqual(result);
 });
 
+test('compare flat yml (yaml) files with default stylish format', () => {
+  const filePath1 = getFixturePath('file3.yml');
+  const filePath2 = getFixturePath('file4.yml');
+  const result = readFile('result_stylish_flat.txt');
+  expect(genDiff(filePath1, filePath2)).toEqual(result);
+});
+
 test('compare json & yaml files with default stylish format', () => {
   const filePath1 = getFixturePath('file1.json');
   const filePath2 = getFixturePath('file2.yaml');
