@@ -1,4 +1,4 @@
-/* import _ from 'lodash';
+import _ from 'lodash';
 
 const buildTree = (data1, data2) => {
   const keys1 = Object.keys(data1);
@@ -21,8 +21,8 @@ const buildTree = (data1, data2) => {
 };
 
 export default buildTree;
- */
 
+/* 
 import _ from 'lodash';
 
 const buildTree = (data1, data2) => {
@@ -50,3 +50,4 @@ const buildTree = (data1, data2) => {
 };
 
 export default buildTree;
+ */
