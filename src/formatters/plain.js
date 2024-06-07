@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 export const getDataToString = (data) => {
   if (data === null) {
     return String(data);
