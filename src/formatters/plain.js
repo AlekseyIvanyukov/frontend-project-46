@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const getDataToString = (data) => {
   if (data === null) {
     return String(data);
@@ -11,7 +13,8 @@ export const getDataToString = (data) => {
 };
 
 const getPlain = (tree, path = []) => tree
-  .map((item) => {
+  .filter((item) => item.status !== 'unchanged')
+  .flatMap((item) => {
     const {
       key, status, children, value, oldValue, newValue,
     } = item;
@@ -24,15 +27,12 @@ const getPlain = (tree, path = []) => tree
         return `Property '${newProp}' was removed`;
       case 'updated':
         return `Property '${newProp}' was updated. From ${getDataToString(oldValue)} to ${getDataToString(newValue)}`;
-      case 'unchanged':
-        return null;
       case 'parent':
         return getPlain(children, [...path, key]);
       default:
         throw new Error(`Unexpected status: ${status}`);
     }
   })
-  .filter((item) => item !== null)
   .join('\n');
 
 export default getPlain;

@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
-import { getDataToString } from '../formatters/plain.js';
+import { getDataToString } from '../src/formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -54,4 +54,11 @@ test('compare files with JSON format', () => {
   const filePath2 = getFixturePath('file2.yaml');
   const result = readFile('result_json.txt');
   expect(genDiff(filePath1, filePath2, 'json')).toEqual(result);
+});
+
+test('compare files with stylish format', () => {
+  const filePath1 = getFixturePath('file1.json');
+  const filePath2 = getFixturePath('file2.yaml');
+  const result = readFile('result_stylish.txt');
+  expect(genDiff(filePath1, filePath2, 'stylish')).toEqual(result);
 });

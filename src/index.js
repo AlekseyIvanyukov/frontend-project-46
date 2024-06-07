@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'node:fs';
 import parse from './parser.js';
 import buildTree from './treebuilder.js';
-import format from '../formatters/index.js';
+import format from './formatters/index.js';
 
 const getFullPath = (filepath) => path.resolve(process.cwd(), '__fixtures__', filepath);
 const extractFormat = (filepath) => path.extname(filepath).slice(1);
